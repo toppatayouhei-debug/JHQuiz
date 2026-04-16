@@ -4,8 +4,8 @@ import pandas as pd
 # データの読み込み
 df = pd.read_csv('nihonshi.csv')
 
-st.title("🌸 日本史一問一答スパルタ塾")
-st.write("漢字で正確に入力してください。ひらがなは不正解です！")
+st.title("日本史一問一答")
+st.write("漢字で正確に入力してください。ひらがなは不正解になります")
 
 # セッション状態の初期化
 if 'index' not in st.session_state:
@@ -26,7 +26,7 @@ if st.session_state.index < len(st.session_state.questions):
 
     with st.form(key='quiz_form', clear_on_submit=True):
         user_input = st.text_input("答えを入力してください")
-        submit_button = st.form_submit_button(label='回答する')
+        submit_button = st.form_submit_button(label='解答する')
 
     if submit_button:
         correct_answer = str(row.iloc[1]).strip()
@@ -34,7 +34,7 @@ if st.session_state.index < len(st.session_state.questions):
             st.success("✨ 正解！！")
             st.session_state.score += 1
         else:
-            st.error(f"❌ 残念！ 正解は「{correct_answer}」でした。")
+            st.error(f"❌ ぶー！ 正解は「{correct_answer}」でした。")
         
         st.session_state.index += 1
         st.button("次の問題へ")
